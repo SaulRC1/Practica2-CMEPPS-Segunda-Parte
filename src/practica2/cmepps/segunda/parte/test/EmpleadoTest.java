@@ -223,6 +223,132 @@ class EmpleadoTest {
 	}
 
 	@Test
+	void testCalculoNominaBrutaEncargado1499Ventas() {
+		//Limite Superior - 1499 ventas
+		//Pondremos 0 horas extras
+		
+		float expected = 2600;
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 1499, 0);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaEncargado1500Ventas() {
+		//Limite Inferior - 1500 ventas
+		//Pondremos 0 horas extras
+		
+		float expected = 2700;
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 1500, 0);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaEncargadoMasDe1500Ventas() {
+		//Limite Superior - +1500 ventas
+		//Pondremos 0 horas extras
+		
+		float expected = 2700;
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 8000, 0);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaEncargado999Ventas() {
+		//Limite Superior Tramo [0, 1000) - 999 ventas
+		//Pondremos 0 horas extras
+		
+		float expected = 2500;
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 999, 0);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaEncargado0Ventas() {
+		//Limite Inferior Tramo [0, 1000) - 0 ventas
+		//Pondremos 0 horas extras
+		
+		float expected = 2500;
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 0, 0);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaEncargadoMenosUnaVentas() {
+		//Limite Superior Tramo [-infinito, 0) - -1 ventas
+		//Pondremos 0 horas extras
+		
+		float expected = 2500;
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, -1, 0);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaEncargadoMenos1000Ventas() {
+		//Limite Inferior Tramo [-infinito, 0) - -1000 ventas
+		//Pondremos 0 horas extras
+		
+		float expected = 2500;
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, -1000, 0);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
 	void testCalculoNominaNeta() {
 		
 	}
