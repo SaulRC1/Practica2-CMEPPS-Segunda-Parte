@@ -2,7 +2,7 @@ package practica2.cmepps.segunda.parte;
 
 public class Empleado {
 	
-	enum TipoEmpleado {
+	public enum TipoEmpleado {
 		Vendedor,
 		Encargado
 	};
@@ -31,7 +31,11 @@ public class Empleado {
 		
 		int primaASumar = determinarPrimaASumar(ventasMes);
 		
-		float calculoHorasExtra = horasExtra * 30;
+		float calculoHorasExtra = 0;
+		
+		if(horasExtra >= 0) {
+			calculoHorasExtra = horasExtra * 30;
+		}
 		
 		if(tipo == TipoEmpleado.Vendedor) {
 			
