@@ -98,7 +98,7 @@ class EmpleadoTest {
 	
 	@Test
 	void testCalculoNominaBrutaVendedor1500Ventas() {
-		//Limite Superior - 1499 ventas
+		//Limite Inferior - 1500 ventas
 		//Pondremos 0 horas extras
 		
 		float expected = 2200;
@@ -116,7 +116,7 @@ class EmpleadoTest {
 	
 	@Test
 	void testCalculoNominaBrutaVendedorMasDe1500Ventas() {
-		//Limite Superior - 1499 ventas
+		//Limite Superior - +1500 ventas
 		//Pondremos 0 horas extras
 		
 		float expected = 2200;
