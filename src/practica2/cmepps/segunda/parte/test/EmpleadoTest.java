@@ -331,6 +331,78 @@ class EmpleadoTest {
 	}
 	
 	@Test
+	void testCalculoNominaBrutaHorasExtraNoValidoLimiteInferior() {
+		//Limite Inferior Tramo [-infinito, 0) --> -1000
+		
+		float expected = 2500;
+		
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 0, -1000);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaHorasExtraNoValidoLimiteSuperior() {
+		//Limite Inferior Tramo [-infinito, 0) --> -1
+		
+		float expected = 2500;
+		
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 0, -1);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaHorasExtraValidoLimiteInferior() {
+		//Limite Inferior Tramo [0, +infinito] --> 0
+		
+		float expected = 2500;
+		
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 0, 0);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
+	void testCalculoNominaBrutaHorasExtraValidoLimiteSuperior() {
+		//Limite Superior Tramo [0, +infinito] --> 1000
+		
+		float expected = 2500 + (1000 * 30);
+		
+		try {
+			
+			float calculo = empleado.calculoNominaBruta(TipoEmpleado.Encargado, 0, 1000);
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+			fail("testCalculoNominaBrutaVendedor1000Ventas - Tipo de Empleado no valido");
+			
+		}
+	}
+	
+	@Test
 	void testCalculoNominaBrutaEncargadoMenos1000Ventas() {
 		//Limite Inferior Tramo [-infinito, 0) - -1000 ventas
 		//Pondremos 0 horas extras
@@ -349,8 +421,134 @@ class EmpleadoTest {
 	}
 	
 	@Test
-	void testCalculoNominaNeta() {
-		
+	void testCalculoNominaNetaNoValidoLimiteInferior() {
+		//Limite Inferior tramo [-infinito, 0) --> -1000
+		try {
+			empleado.calculoNominaNeta(-1000);
+			
+			//Si llega aqui el test ha fallado
+			fail("No salta la excepcion");
+			
+		} catch (Exception e) {
+
+		}
 	}
+	
+	@Test
+	void testCalculoNominaNetaNoValidoLimiteSuperior() {
+		//Limite Superior tramo [-infinito, 0) --> -1
+		try {
+			empleado.calculoNominaNeta(-1);
+			
+			//Si llega aqui el test ha fallado
+			fail("No salta la excepcion");
+			
+		} catch (Exception e) {
+
+		}
+	}
+	
+	@Test
+	void testCalculoNominaNetaValido0() {
+		//Limite Inferior Tramo [0, 2100) --> 0
+		
+		float expected = 0;
+		
+		try {
+			
+			float calculo = empleado.calculoNominaNeta(0);
+			
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+		}
+	}
+	
+	@Test
+	void testCalculoNominaNetaValido2099() {
+		//Limite Superior Tramo [0, 2100) --> 2099
+		
+		float expected = 2099;
+		
+		try {
+			
+			float calculo = empleado.calculoNominaNeta(2099);
+			
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+		}
+	}
+	
+	@Test
+	void testCalculoNominaNetaValido2100() {
+		//Limite Inferior Tramo [2100, 2500) --> 2100
+		
+		float expected = 2100 * (1 - 0.15f);
+		
+		try {
+			
+			float calculo = empleado.calculoNominaNeta(2100);
+			
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+		}
+	}
+	
+	@Test
+	void testCalculoNominaNetaValido2499() {
+		//Limite Superior Tramo [2100, 2500) --> 2499
+		
+		float expected = 2499 * (1 - 0.15f);
+		
+		try {
+			
+			float calculo = empleado.calculoNominaNeta(2499);
+			
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+		}
+	}
+	
+	@Test
+	void testCalculoNominaNetaValido2500() {
+		//Limite Inferior Tramo [2500, +infinito) --> 2500
+		
+		float expected = 2500 * (1 - 0.18f);
+		
+		try {
+			
+			float calculo = empleado.calculoNominaNeta(2500);
+			
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+		}
+	}
+	
+	@Test
+	void testCalculoNominaNetaValidoMasInfinito() {
+		//Limite Superior Tramo [2500, +infinito) --> 8000
+		
+		float expected = 8000 * (1 - 0.18f);
+		
+		try {
+			
+			float calculo = empleado.calculoNominaNeta(8000);
+			
+			assertEquals(expected, calculo);
+			
+		} catch (Exception e) {
+
+		}
+	}
+	
 
 }

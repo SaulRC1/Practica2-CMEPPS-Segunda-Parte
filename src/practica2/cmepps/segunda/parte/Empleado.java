@@ -59,8 +59,9 @@ public class Empleado {
 	 * @param nominaBruta Nomina Bruta
 	 * @return Nomina neta, en caso de que no haya retenciones, la nomina neta sera
 	 * 		   igual a la bruta.
+	 * @throws Exception Si la nominaBruta es menor a 0 euros
 	 */
-	public float calculoNominaNeta(float nominaBruta) {
+	public float calculoNominaNeta(float nominaBruta) throws Exception {
 		
 		/*
 		 * Si la nomina bruta es menor de 2100 euros, no se aplicará ninguna retención. Para nominas superiores
@@ -69,7 +70,11 @@ public class Empleado {
 		 * 
 		 */
 		
-		if(nominaBruta > 2100 && nominaBruta < 2500) {
+		if(nominaBruta < 0) {
+			throw new Exception("El valor introducido no es válido");
+		}
+		
+		if(nominaBruta >= 2100 && nominaBruta < 2500) {
 			
 			return nominaBruta * (1 - 0.15f);
 			
